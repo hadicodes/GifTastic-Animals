@@ -1,0 +1,26 @@
+.jumbotron {
+    text-align: center;
+    margin-top: 25px;
+}
+
+
+/*.navbar {
+    background-color: #4C4C4C;
+}
+*/
+
+.navbar-brand {
+    color: #E6E6E6;
+}
+
+.animal {
+    margin: 10px;
+}
+
+.animalDump {
+    margin-bottom: 15px;
+}
+
+.submitButton {
+    margin-top: 5px;
+}
