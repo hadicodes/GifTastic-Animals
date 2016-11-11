@@ -26,21 +26,25 @@ renderButtons();
 $(document).on('click', '.animal', function() {
 
     var animal = $(this).data('name');
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=dc6zaTOxFJmzC&limit=10&rating=g&pg";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=dc6zaTOxFJmzC&limit=10&rating=g&pg";
     $.ajax({
             url: queryURL,
             method: 'GET'
         })
         .done(function(response) {
             //put image results data obtained from response into a var called results
-            console.log(response);
-            console.log(queryURL);
+            // Place the reluts of the queryURL into a var called results.
             var results = response.data;
             for (var i = 0; i < results.length; i++) {
                 var animalDiv = $('<div>');
                 var animalImage = $('<img>');
+                var rating = results[i].rating;
+                var ratingDisplay = $('<p>').text('Rating: ' + rating);
+
                 animalImage.attr('src', results[i].images.fixed_height_still.url);
                 animalDiv.append(animalImage);
+                animalDiv.append(ratingDisplay);
+
                 $('#animal-gifs').prepend(animalDiv);
             }
         });
