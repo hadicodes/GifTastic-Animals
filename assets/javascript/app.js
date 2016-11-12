@@ -1,5 +1,5 @@
 //array of preloaded animals for giphy API
-var topics = ['T-Rex', 'frog', 'gorilla', 'crocodile', 'swordfish', 'lemur', 'cheeta', 'lion', 'lovebird', 'bear'];
+var topics = ['T-Rex', 'frog', 'gorilla', 'elephant', 'fat hamster', 'lemur', 'cheeta', 'lion', 'lovebird', 'bear'];
 
 // Generic function for creating & displaying animals from array buttons 
 function renderButtons() {
@@ -58,9 +58,10 @@ $(document).on('click', '.animal', function() {
 //Animating and pausing loaded Gifs
 $(document).on('click', '.gif', function() {
 
-
+    //Loading the clicked Gif's data state into a var called state
     var state = $(this).attr('data-state');
 
+    //The if then statement to allow animation and pausing the gif
     if (state == 'still') {
         $(this).attr('src', $(this).data('animate'));
         $(this).attr('data-state', 'animate');
