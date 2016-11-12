@@ -1,5 +1,5 @@
 //array of preloaded animals for giphy API
-var topics = ['eagle', 'frog', 'gorilla', 'crocodile', 'swordfish', 'lemur', 'cheeta', 'lion', 'lovebird', 'bear'];
+var topics = ['T-Rex', 'frog', 'gorilla', 'crocodile', 'swordfish', 'lemur', 'cheeta', 'lion', 'lovebird', 'bear'];
 
 // Generic function for creating & displaying animals from array buttons 
 function renderButtons() {
@@ -42,10 +42,38 @@ $(document).on('click', '.animal', function() {
                 var ratingDisplay = $('<p>').text('Rating: ' + rating);
 
                 animalImage.attr('src', results[i].images.fixed_height_still.url);
+                //Function to animate and pause gifs
+                animalImage.addClass('gif');
+                animalImage.attr('data-still', results[i].images.fixed_height_still.url);
+                animalImage.attr('data-animate', results[i].images.fixed_height.url);
+                animalImage.attr('data-state', 'still');
                 animalDiv.append(animalImage);
                 animalDiv.append(ratingDisplay);
 
                 $('#animal-gifs').prepend(animalDiv);
             }
         });
+});
+
+//Animating and pausing loaded Gifs
+$(document).on('click', '.gif', function() {
+
+
+    var state = $(this).attr('data-state');
+
+    if (state == 'still') {
+        $(this).attr('src', $(this).data('animate'));
+        $(this).attr('data-state', 'animate');
+    } else {
+        $(this).attr('src', $(this).data('still'));
+        $(this).attr('data-state', 'still');
+    }
+});
+
+//Function for adding user input from "add animal" field box into array of animals.
+$('#add-animal').on('click', function() {
+    var userInputAnimal = $('#animal-input').val().trim();
+    topics.push(userInputAnimal);
+    renderButtons();
+    return false;
 });
